@@ -10,7 +10,7 @@
         v-for="item in productsLocal"
         :key="item.id"
         :data="{
-          id: item.id,
+          _id: item._id,
           img: item.imgs[0],
           name: item.name,
           price: item.price,
@@ -25,11 +25,11 @@
 import HelmetVue from "@/components/Helmet.vue";
 import PageTitleVue from "@/components/PageTitle.vue";
 import CardProductVue from "../components/CardProduct.vue";
-import products from "../assets/fake-data/products";
+import * as fetchProduct from '../assets/api-data/fetchProduct'
 export default {
   data() {
     return {
-      products,
+      products: [],
       productsLocal: [],
     };
   },
@@ -50,10 +50,14 @@ export default {
         this.productsLocal = this.products;
       }
     },
+    async getData (){
+      this.products = await fetchProduct.fetchAllProduct()
+    }
   },
   emits: ["headerBackgr"],
   mounted() {
     this.$emit("headerBackgr", "normal");
+    this.getData()
   },
 };
 </script>

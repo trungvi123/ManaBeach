@@ -26,7 +26,9 @@
         </li>
       </ul>
       <button class="mt-5 outlineBtn">
-        <span>Xem chi tiết</span><BIconChevronRight class="icon-btn" />
+        <router-link :to="{ path: '/product/633c5885f680fc040612a57d' }"
+          ><span>Xem chi tiết</span><BIconChevronRight class="icon-btn"
+        /></router-link>
       </button>
     </div>
     <div class="sec-room__right d-flex h-100">

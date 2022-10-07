@@ -9,7 +9,7 @@
       <BIconSearch class="side-bar__search__icon"></BIconSearch>
     </div>
     <h5 class="side-bar__title">BÀI VIẾT MỚI NHẤT</h5>
-    <div class="small__line mt-1"></div>
+    <div class="small__line mt-1 mb-3"></div>
 
     <router-link :to="{path:`/news/${item.slug}`}" @click="emitSlug(item.slug)" class="side-bar__list" v-for="item in newsData" :key="item.id">
       <div class="side-bar__list__item d-flex mb-2">

@@ -5,6 +5,8 @@ import News from "@/views/News.vue";
 import NewsDetail from "@/views/NewsDetail.vue";
 import Product from '../views/Product.vue'
 import About from '../views/About-us.vue'
+import AddProduct from '../views/AddProduct.vue'
+import AddImgForProduct from '../views/AddImgForProduct.vue'
 const routes = [
   {
     path: "/",
@@ -35,6 +37,22 @@ const routes = [
     path: "/about-us",
     name: "About-us",
     component: About,
+  },
+  
+  {
+    path: "/add-product",
+    name: "Add-product",
+    component: AddProduct,
+  },
+  {
+    path: "/add-img-product",
+    name: "Add-img-product",
+    component: AddImgForProduct,
+  },
+  {
+    path: "/add-img-product",
+    name: "Add-img-product",
+    component: AddImgForProduct,
   },
   {
     path: "/:pathMatch(.*)*",

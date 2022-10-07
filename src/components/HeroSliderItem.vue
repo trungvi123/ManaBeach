@@ -70,11 +70,11 @@ img {
     top: 30%;
   }
   .slide-info__title {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 
   .slide-info__description {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 </style>

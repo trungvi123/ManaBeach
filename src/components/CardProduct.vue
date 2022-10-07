@@ -1,6 +1,6 @@
 <template>
-  <div class="p-4 m-2 cart-product">
-    <router-link :to="{ path: `/product/${data.id}` }">
+  <div class="p-lg-3 p-md-1 m-2 cart-product">
+    <router-link :to="{ path: `/product/${data._id}` }">
       <div class="cart-product__top">
         <img
           class="w-100 h-100 cart-product__top__img"
@@ -15,13 +15,19 @@
           {{ data.name }}
         </h5></router-link
       >
-      <p class="cart-product__bot__price">{{ data.price }}</p>
+      <p class="cart-product__bot__price" v-if="data.price">{{numberWithCommas(data.price)  }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import numberWithCommas from "../utils/numberWithCommas";
 export default {
+  data() {
+    return {
+      numberWithCommas,
+    }
+  },
   props: {
     data: { type: Object },
   },
@@ -41,9 +47,18 @@ export default {
 .cart-product__bot__head {
   font-weight: 700;
   cursor: pointer;
+  display: block;
+  display: -webkit-box;
+  font-size: 16px;
+  line-height: 1.3;
+  -webkit-line-clamp: 2; /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cart-product__bot__head:hover {
   color: var(--five-text-color);
 }
+
 </style>

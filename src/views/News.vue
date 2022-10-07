@@ -3,7 +3,7 @@
     <HelmetVue :title="'news'"></HelmetVue>
     <PageTitleVue></PageTitleVue>
     <div class="row m-0 justify-content-center mt-3">
-      <div class="content col-lg-7">
+      <div class="content col-lg-6">
         <div class="row justify-content-center">
           <CardVue
             v-for="card in newsData"
@@ -19,7 +19,7 @@
           ></CardVue>
         </div>
       </div>
-      <div class="sideBar col-lg-3 pl-3 pr-3">
+      <div class="sideBar col-lg-3 pl-3 pr-3 col-sm-2">
         <SideBarVue></SideBarVue>
       </div>
     </div>

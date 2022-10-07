@@ -1,35 +1,34 @@
 <template>
   <div>
     <h4>SẢN PHẨM TƯƠNG TỰ</h4>
-    <div class="row m-0">
-      <CardProductVue
-        class="col-lg-3"
-        v-for="item in sameProducts"
-        :key="item.id"
-        :data="item"
-      ></CardProductVue>
+    <div class="row m-0 justify-content-center">
+      <div v-for="item in sameProducts" :key="item.id" class="col-lg-3 col-md-3 col-sm-5">
+        <CardProductVue
+          @click="handleEmit"
+          :data="item"
+        ></CardProductVue>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CardProductVue from "../CardProduct.vue";
-import products from "../../assets/fake-data/products";
+import * as fetchProduct from "../../assets/api-data/fetchProduct";
+
 export default {
   data() {
     return {
       sameProductId: [],
-      products,
+      products: [],
       sameProducts: [],
+      productCurrent: {},
     };
   },
-  props: {
-    data2: { type: Object },
-  },
   watch: {
-    data2: function () {
+    productCurrent: function () {
       this.sameProducts = [];
-      this.sameProductId = []
+      this.sameProductId = [];
       this.handleMethod();
     },
   },
@@ -39,18 +38,21 @@ export default {
   methods: {
     getSameProductIdByType(type) {
       // lấy các id của sản phẩm tương tự
-      products.forEach((e) => {
+      this.products.forEach((e) => {
         if (e.type.includes(type)) {
           // push vao mảng nếu id đó chưa có trong mảng và id đó khác sản phẩm hiện tại
-          if (!this.sameProductId.includes(e.id) && e.id != this.data2.id) {
-            this.sameProductId.push(e.id);
+          if (
+            !this.sameProductId.includes(e._id) &&
+            e._id !== this.productCurrent._id
+          ) {
+            this.sameProductId.push(e._id);
           }
         }
       });
     },
-    getProductsById(id) {
-      // lấy sẳn phẩm bằng id của nó
-      let item = products.filter((e) => e.id == id);
+    getProductsById(_id) {
+      // lấy sẳn phẩm bằng _id của nó
+      let item = this.products.filter((e) => e._id == _id);
       this.sameProducts.push(item); // push vào mảng để sử dụng
     },
     getProduct() {
@@ -60,15 +62,31 @@ export default {
       });
     },
     handleMethod() {
-      this.data2.type.forEach((type) => {
+      this.productCurrent.type.forEach((type) => {
         this.getSameProductIdByType(type);
       });
+
       this.getProduct();
       this.sameProducts = this.sameProducts.flat();
     },
+    async getData() {
+      this.products = await fetchProduct.fetchAllProduct();
+      // từ  các sản phẩm đó lấy 1 sp bằng id
+      this.productCurrent = this.products.find((e) => {
+        if (e._id == this.$route.params.id) {
+          return e;
+        }
+      });
+      this.handleMethod();
+    },
+    handleEmit() {
+      this.$emit("changeProduct", this.$route.params.id);
+      this.getData();
+    },
   },
+  emits: ["changeProduct"],
   mounted() {
-    this.handleMethod();
+    this.getData();
   },
 };
 </script>

@@ -9,6 +9,9 @@
         @click="toggleBar"
         class="nav_icon nav-service__iconBar"
       ></BIconList>
+      <BIconBag
+        class="nav_icon nav-service__iconCart nav-service__iconCart__left"
+      ></BIconBag>
     </div>
     <div class="d-flex header-item align-items-center justify-content-center">
       <div class="logo-box">
@@ -62,13 +65,20 @@
             >
           </li>
         </ul>
+        <div
+          :class="{ active: activeBar }"
+          @click="toggleBar()"
+          class="filter__toggle"
+        ></div>
       </nav>
     </div>
     <div class="header-item nav-service d-flex justify-content-end">
       <div>
         <BIconSearch class="nav_icon nav-service__iconSeach"></BIconSearch>
         <BIconPerson class="nav_icon nav-service__iconUser"></BIconPerson>
-        <BIconBag class="nav_icon nav-service__iconCart"></BIconBag>
+        <BIconBag
+          class="nav_icon nav-service__iconCart nav-service__iconCart__right"
+        ></BIconBag>
       </div>
     </div>
 
@@ -220,6 +230,10 @@ export default {
 .nav-service__iconSeach {
   font-size: 2.5rem;
 }
+
+.nav-service__iconCart__left {
+  display: none;
+}
 .nav-service__close {
   position: fixed;
   right: 0;
@@ -262,6 +276,7 @@ export default {
   }
   .header-item {
     flex: 1;
+    align-items: center;
     display: flex !important;
   }
   .logo-box {
@@ -280,15 +295,19 @@ export default {
     z-index: 99;
   }
 
-  .nav-list::after {
-    content: "";
-    position: absolute;
-    left: 250px;
-    width: calc(100vh + 500px);
+  .filter__toggle {
+    position: fixed;
     top: 0;
     bottom: 0;
+    left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    z-index: 98;
+    display: none;
+  }
+
+  .filter__toggle.active {
+    display: block;
   }
 
   .nav-list.active {
@@ -343,10 +362,25 @@ export default {
   .logo-box {
     margin-left: 35%;
   }
-  .nav_icon {
-    margin-right: 10px;
-    padding: 8px;
+
+  .nav-service__iconCart__right {
+    display: none;
   }
+
+  .logo {
+    transform: scale(0.7);
+  }
+  .nav_icon {
+    margin-right: 5px;
+    padding: 9px;
+  }
+
+  .nav-service__iconCart__left {
+    display: block;
+    padding: 8px;
+    margin-bottom: 3px;
+  }
+
   .nav-service__iconUser,
   .nav-service__iconBar {
     font-size: 2.8rem;

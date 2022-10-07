@@ -5,8 +5,10 @@
       <h2>{{ data.title }}</h2>
       <p>{{ data.description }}</p>
       <button class="outlineBtn">
-        <span>{{ data.nameBtn }}</span
-        ><BIconChevronRight class="icon-btn" />
+        <router-link :to="{ path: `${data.link}` }">
+          <span>{{ data.nameBtn }}</span
+          ><BIconChevronRight class="icon-btn" />
+        </router-link>
       </button>
     </div>
   </section>
@@ -51,8 +53,6 @@ export default {
   font-size: 2.2rem;
 }
 
-
-
 .sec-banner__info p {
   font-size: 1.1rem;
   color: var(--Fourth-text-color);
@@ -68,22 +68,20 @@ export default {
   }
 
   .sec-banner {
-  height: 50vh;
-}
+    height: 50vh;
+  }
 
-.sec-banner__info h2 {
-  font-weight: 400;
-  font-size: 1.7rem;
-}
+  .sec-banner__info h2 {
+    font-weight: 400;
+    font-size: 1.7rem;
+  }
 
-.sec-banner__info p {
-  font-size: 0.8rem;
-}
+  .sec-banner__info p {
+    font-size: 0.8rem;
+  }
 
-.outlineBtn span {
-  font-size: 0.9rem;
-
-}
-
+  .outlineBtn span {
+    font-size: 0.9rem;
+  }
 }
 </style>

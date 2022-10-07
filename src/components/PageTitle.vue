@@ -13,7 +13,7 @@
         ></router-link>
       </div>
       <div class="page-title__content__item">
-        <CatalogFilterVue v-if="catalogFilter"></CatalogFilterVue>
+        <CatalogFilterVue v-if="catalogFilter" class="mb-3 mb-lg-0"></CatalogFilterVue>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
         parentPath = {
           // format lại dữ liệu trước khi render
           display: `${tmpObj.display.toUpperCase()} / `,
-          path: tmpObj.path,
+          path: tmpObj.path + '/tat-ca',
         };
       }
 

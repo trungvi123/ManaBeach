@@ -23,7 +23,7 @@
           'Với sự pha trộn dễ chịu của các vật liệu tự nhiên và sang trọng, trang trí và nội thất tạo ra một bầu không khí mời gọi thúc đẩy thư giãn và cảm giác hạnh phúc.',
         img: `${backgrSec1}`,
         nameBtn: 'KHÁM PHÁ PHÒNG KHÁCH SẠN',
-        link: '/catalog',
+        link: '/catalog/tat-ca',
       }"
     />
     <SecBannerVue
