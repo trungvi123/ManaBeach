@@ -63,7 +63,7 @@ export default {
       });
     },
     handleMethod() {
-      this.productCurrent.type.forEach((type) => {
+      this.productCurrent.type?.forEach((type) => {
         this.getSameProductIdByType(type);
       });
 

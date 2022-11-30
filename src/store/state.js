@@ -7,7 +7,8 @@ export default {
     messageModal:{
         show:false,
         heading:'',
-        content:''
+        content:'',
+        type:'success'
     },
     stateLogin: JSON.parse(localStorage.getItem("stateLogin")),
     userInfo: JSON.parse(localStorage.getItem("userInfo")) != ""

@@ -6,14 +6,11 @@
           <CarouselVue :data="data"></CarouselVue>
         </div>
         <div class="right-content col-lg-4 col-md-5 p-3">
-          <h3 class="right-content__name">{{ data.name }}</h3>
+          <h3 class="right-content__name">{{ data.name ? data.name : '' }}</h3>
           <div class="small__line mt-3"></div>
           <p class="right-content__price mt-1" v-if="data.price">
             {{ numberWithCommas(data.price) }}
           </p>
-          <button class="primaryBtn">
-            <span>Đặt ngay</span>
-          </button>
           <button class="primaryBtn ml-2" @click="addToCart()">
             <span>Thêm vào giỏ</span>
           </button>
@@ -68,15 +65,24 @@ export default {
     SameProductVue,
   },
   methods: {
-    ...mapMutations(["setCartList",'setTotalCart']),
+    ...mapMutations(["setCartList", "setTotalCart",'setMessageModal']),
     async addToCart() {
       let product = {
         ...this.data,
         quantity: 1,
       };
+      let checkAlready ;
       // this.setCartList(...this.getCartList,product)
+      if(this.getCartList != []){
+        checkAlready = this.getCartList?.find((e) => e._id == product._id);
+      }
 
-      let checkAlready = this.getCartList.find((e) => e._id == product._id);
+      this.setMessageModal({
+        show: true,
+        heading: "Thông báo",
+        content: "Thêm sản phẩm vào giỏ hàng thành công",
+        type: "success",
+      });
 
       if (checkAlready) {
         //   // spham co trong gio hang roi thi tang so luong
@@ -105,12 +111,12 @@ export default {
             element.cart = this.getCartList;
 
             let user = await userApi.updateUser(element);
-            console.log(user);
+            // console.log(user);
           }
         });
 
-         // cap nhat lai gia tien tong
-         let totalCart = 0;
+        // cap nhat lai gia tien tong
+        let totalCart = 0;
         this.getCartList?.forEach((e) => {
           totalCart += Number(e.price) * Number(e.quantity);
         });

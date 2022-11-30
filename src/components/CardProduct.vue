@@ -1,22 +1,52 @@
 <template>
   <div class="p-lg-3 p-md-1 m-2 cart-product">
-    <router-link :to="{ path: `/product/${data._id}` }">
+    <router-link v-if="notLink == false" :to="{ path: `/product/${data._id}` }">
       <div class="cart-product__top">
         <img
+          v-if="(data.img || data.imgs)"
           class="w-100 h-100 cart-product__top__img"
-          :src="data.img || data.imgs[0]"
+          :src="data.img || data.imgs[0] || ''"
           alt="img-product"
         />
       </div>
     </router-link>
+    <div
+      v-else
+      class="cart-product__top"
+      data-toggle="modal"
+      data-target="#myModal"
+    >
+      <img
+      v-if="(data.img || data.imgs)"
+        class="w-100 h-100 cart-product__top__img"
+        :src="data.img || data.imgs[0] || ''"
+        alt="img-product"
+      />
+    </div>
+
     <div class="cart-product__bot">
-      <router-link :to="{ path: `/product/${data.id}` }"
+      <router-link
+        v-if="notLink == false"
+        :to="{ path: `/product/${data._id}` }"
         ><h5 class="cart-product__bot__head mt-1">
           {{ data.name }}
         </h5></router-link
       >
-      <p class="cart-product__bot__price" v-if="data.price">{{numberWithCommas(data.price)  }}</p>
+      <div
+        v-else
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        <h5 class="cart-product__bot__head mt-1">
+          {{ data.name }}
+        </h5>
+      </div>
+
+      <p class="cart-product__bot__price" v-if="data.price">
+        {{ numberWithCommas(data.price) }}
+      </p>
     </div>
+
   </div>
 </template>
 
@@ -26,11 +56,17 @@ export default {
   data() {
     return {
       numberWithCommas,
-    }
+    };
   },
   props: {
     data: { type: Object },
+    notLink: {
+      type: Boolean,
+    },
   },
+  methods: {
+  },
+
 };
 </script>
 
@@ -60,5 +96,6 @@ export default {
 .cart-product__bot__head:hover {
   color: var(--five-text-color);
 }
+
 
 </style>

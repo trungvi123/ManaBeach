@@ -10,7 +10,9 @@ import AddImgForProduct from '@/views/AddImgForProduct.vue'
 import Contact from '@/views/Contact.vue'
 import Cart from '@/views/Cart.vue'
 import Search from '@/views/Search.vue'
-import AdminLogin from '@/views/adminLogin.vue'
+import AdminLogin from '@/views/AdminLogin.vue'
+import ProductManager from '../views/ProductManager.vue'
+import OrderManager from '../views/OrderManager.vue'
 const routes = [
   {
     path: "/",
@@ -36,6 +38,16 @@ const routes = [
     path: "/search",
     name: "Search",
     component: Search,
+  },
+  {
+    path: "/productManager",
+    name: "ProductManager",
+    component: ProductManager,
+  },
+  {
+    path: "/orderManager",
+    name: "OrderManager",
+    component: OrderManager,
   },
   {
     path: "/contact",

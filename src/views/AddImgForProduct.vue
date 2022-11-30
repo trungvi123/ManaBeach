@@ -47,6 +47,7 @@
 
 <script>
 import productApi from "../api/productApi";
+import { mapGetters, mapMutations } from 'vueX';
 
 export default {
   data() {
@@ -55,7 +56,11 @@ export default {
       idProduct:''
     };
   },
+  computed:{
+    ...mapGetters(['getIsAdmin'])
+  },
   methods: {
+    ...mapMutations(['setMessageModal']),
     handleUploadImg(e) {
       let file = e.target.files[0];
       URL.revokeObjectURL(this.imgurl);
@@ -75,6 +80,12 @@ export default {
         },
       };
       productApi.createImgForProduct(formData, config);
+      this.setMessageModal({
+        show: true,
+        heading: "Thông báo",
+        content: "Thêm ảnh sản phẩm thành công",
+        type: "success",
+      });
     },
   }, 
   mounted(){

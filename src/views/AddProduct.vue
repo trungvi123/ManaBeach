@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vueX";
+import { mapGetters, mapMutations } from "vueX";
 import productApi from "../api/productApi";
 export default {
   data() {
@@ -103,7 +103,8 @@ export default {
     ...mapGetters(['getIsAdmin'])
   },
   methods: {
-    handleSubmit(e) {
+    ...mapMutations(['setMessageModal']),
+    async handleSubmit(e) {
       e.preventDefault();
       this.imgs = [];
       const typeCheckboxs =
@@ -120,7 +121,13 @@ export default {
         type: this.type,
         description: this.description,
       };
-      productApi.createProduct(data);
+      let result = await productApi.createProduct(data);
+      this.setMessageModal({
+        show: true,
+        heading: "Thông báo",
+        content: `Thêm sản phẩm thành công, mã sản phẩm là ${result._id}`,
+        type: "success",
+      });
     },
   },
   mounted(){

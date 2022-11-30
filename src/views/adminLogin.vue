@@ -15,7 +15,10 @@
         </div>
         <div class="content__btns">
           <button v-if="getIsAdmin" class="primaryBtn mt-4">
-            <span>Quản lí sản phẩm</span>
+            
+            <router-link :to="{ path: '/productManager' }">
+              <span>Quản lí sản phẩm</span>
+            </router-link>
           </button>
           <button v-if="getIsAdmin" class="primaryBtn mt-4">
             <router-link :to="{ path: '/add-product' }">

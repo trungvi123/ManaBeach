@@ -87,13 +87,13 @@
         <LoginVue @closeLoginModal="closeLoginModal" :showProps="showLoginModal"></LoginVue>
 
         <router-link :to="{ path: '/cart' }" class="cart__count__box">
-          <div
+          <div 
             class="cart__count"
             :class="{
               cart__count__box__bg: backgrProps == 'transparent' ? false : true,
             }"
           >
-            {{ getCartList.length > 9 ? '9+': getCartList.length}}
+            {{   getCartList ?  getCartList.length > 9 ? '9+': getCartList.length > 0 ? getCartList.length : '' :''}}
            
           </div>
           <BIconBag

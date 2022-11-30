@@ -13,7 +13,10 @@
       </div>
       <div class="content__btns">
         <button v-if="getIsAdmin" class="outlineBtn mt-4">
-          <span>Quản lí sản phẩm</span>
+          
+          <router-link :to="{ path: '/productManager' }">
+            <span>Quản lí sản phẩm</span>
+          </router-link>
         </button>
         <button v-if="getIsAdmin" class="outlineBtn mt-4">
           <router-link :to="{ path: '/add-product' }">
@@ -88,7 +91,6 @@
         </Form>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -97,7 +99,6 @@ import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { mapGetters, mapMutations } from "vueX";
 
-import MessageModalVue from "./MessageModal.vue";
 import signUpApi from "../api/signUpApi";
 import signInApi from "../api/signInApi";
 export default {
@@ -119,7 +120,6 @@ export default {
     };
   },
   components: {
-    MessageModalVue,
     Form,
     Field,
     ErrorMessage,
@@ -134,6 +134,7 @@ export default {
       "getUserInfo",
       "getCartList",
       "getIsAdmin",
+      "getMessageModal",
     ]),
   },
   methods: {
@@ -143,7 +144,7 @@ export default {
       "setCartList",
       "setTotalCart",
       "setIsAdmin",
-      "setMassageModal"
+      "setMessageModal",
     ]),
     changeLoginMod() {
       this.loginMod = !this.loginMod;
@@ -164,17 +165,22 @@ export default {
           this.closeModal(); // ẩn modal đăng nhập
 
           // hien thong bao dang nhap thanh cong
-            this.setMassageModal({
-              show:true,
-              heading:'Thông báo',
-              content:'Đăng nhập thành công'
-            })
+          this.setMessageModal({
+            show: true,
+            heading: "Thông báo",
+            content: "Đăng nhập thành công",
+            type: "success",
+          });
           // lua du lieu vao local store va vue x
           localStorage.setItem("stateLogin", JSON.stringify("login"));
           localStorage.setItem("userInfo", JSON.stringify(result.user.email));
+          localStorage.setItem("isAdmin", JSON.stringify(false));
+
 
           this.setStateLogin(JSON.parse(localStorage.getItem("stateLogin")));
           this.setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+          this.setIsAdmin(false);
+
 
           // sau khi dang nhap thanh cong thi load gio hang cua user
 
@@ -201,7 +207,13 @@ export default {
           let result = await signUpApi.signUpUser(postData);
           if (result.state == "success") {
             // dang ky thanh cong
-            //hien modal thong bao dang nhap thanh cong
+            //hien modal thong bao dang ky thanh cong
+            this.setMessageModal({
+        show: true,
+        heading: "Thông báo",
+        content: "Đăng ký thành công",
+        type: "success",
+      });
           }
         }
       }
@@ -210,9 +222,15 @@ export default {
       localStorage.setItem("stateLogin", JSON.stringify("unlogin"));
       localStorage.setItem("userInfo", JSON.stringify(""));
 
+      this.setMessageModal({
+        show: true,
+        heading: "Thông báo",
+        content: "Đăng xuất thành công",
+        type: "success",
+      });
       this.setStateLogin(JSON.parse(localStorage.getItem("stateLogin")));
       this.setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
-      this.setTotalCart(0)
+      this.setTotalCart(0);
       this.setCartList([]);
       this.closeModal();
     },
