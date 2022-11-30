@@ -35,11 +35,13 @@ html {
 
   --mobile-width: 600px;
   --tablet-width: 1024px;
+
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .main-content {
   margin-top: var(--header-height);
-  min-height: 1200px;
+  min-height: 1000px;
 }
 
 /* custom button */
@@ -62,6 +64,14 @@ html {
 .outlineBtn span,
 .primaryBtn span {
   padding: 0 20px;
+}
+
+.outlineBtn a,
+.primaryBtn a {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon-btn {
@@ -99,18 +109,16 @@ html {
   background-color: var(--Fourth-backgr-color);
 }
 
-
-
 /* custom scroll bar */
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   width: 10px;
 }
 
-body::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track {
   background-color: #fafafa;
 }
 
-body::-webkit-scrollbar-thumb{
-  background-image: linear-gradient(-45deg, #c9dbeb,#3189b3);
+body::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(-45deg, #c9dbeb, #3189b3);
   border-radius: 50px;
 }

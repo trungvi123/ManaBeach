@@ -14,6 +14,9 @@
           <button class="primaryBtn">
             <span>Đặt ngay</span>
           </button>
+          <button class="primaryBtn ml-2" @click="addToCart()">
+            <span>Thêm vào giỏ</span>
+          </button>
           <div class="mt-2 typeRoom">
             <span class="mr-1">Danh mục:</span>
             <span class="mr-1" v-for="(item, index) in typeCurrent" :key="item">
@@ -44,7 +47,8 @@ import SameProductVue from "../components/product/SameProduct.vue";
 import typeRoom from "../assets/fake-data/typeRoom";
 import numberWithCommas from "../utils/numberWithCommas";
 import * as fetchProduct from "../assets/api-data/fetchProduct.js";
-
+import { mapGetters, mapMutations } from "vueX";
+import userApi from "../api/userApi";
 export default {
   data() {
     return {
@@ -55,12 +59,65 @@ export default {
       numberWithCommas,
     };
   },
+  computed: {
+    ...mapGetters(["getCartList"]),
+  },
   components: {
     CarouselVue,
     CollapseVue,
     SameProductVue,
   },
   methods: {
+    ...mapMutations(["setCartList",'setTotalCart']),
+    async addToCart() {
+      let product = {
+        ...this.data,
+        quantity: 1,
+      };
+      // this.setCartList(...this.getCartList,product)
+
+      let checkAlready = this.getCartList.find((e) => e._id == product._id);
+
+      if (checkAlready) {
+        //   // spham co trong gio hang roi thi tang so luong
+        let updateCart = this.getCartList.map((e) => {
+          if (e._id == product._id) {
+            e.quantity++;
+          }
+          return e;
+        });
+
+        // cap nhat lai gia tien tong
+        let totalCart = 0;
+        this.getCartList?.forEach((e) => {
+          totalCart += Number(e.price) * Number(e.quantity);
+        });
+        this.setTotalCart(totalCart);
+
+        this.setCartList(updateCart);
+      } else {
+        this.getCartList.push(product);
+        let infoUser = JSON.parse(localStorage.getItem("userInfo"));
+        let ListUser = await userApi.getAllUser();
+
+        ListUser.forEach(async (element) => {
+          if (element.email == infoUser) {
+            element.cart = this.getCartList;
+
+            let user = await userApi.updateUser(element);
+            console.log(user);
+          }
+        });
+
+         // cap nhat lai gia tien tong
+         let totalCart = 0;
+        this.getCartList?.forEach((e) => {
+          totalCart += Number(e.price) * Number(e.quantity);
+        });
+        this.setTotalCart(totalCart);
+      }
+      // console.log(this.getCartList.push(product));
+    },
     async getData() {
       try {
         // lấy tất cả sản phẩm

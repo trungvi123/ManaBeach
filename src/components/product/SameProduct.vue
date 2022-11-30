@@ -2,11 +2,12 @@
   <div>
     <h4>SẢN PHẨM TƯƠNG TỰ</h4>
     <div class="row m-0 justify-content-center">
-      <div v-for="item in sameProducts" :key="item.id" class="col-lg-3 col-md-3 col-sm-5">
-        <CardProductVue
-          @click="handleEmit"
-          :data="item"
-        ></CardProductVue>
+      <div
+        v-for="item in sameProducts"
+        :key="item.id"
+        class="col-lg-3 col-md-3 col-sm-5"
+      >
+        <CardProductVue @click="handleEmit" :data="item"></CardProductVue>
       </div>
     </div>
   </div>
@@ -80,6 +81,7 @@ export default {
       this.handleMethod();
     },
     handleEmit() {
+      window.scrollTo(0, 0);
       this.$emit("changeProduct", this.$route.params.id);
       this.getData();
     },

@@ -77,6 +77,11 @@ export default {
       productApi.createImgForProduct(formData, config);
     },
   }, 
+  mounted(){
+    if(!this.getIsAdmin){
+      this.$router.push('/not-found')
+    }
+  }
 };
 </script>
 

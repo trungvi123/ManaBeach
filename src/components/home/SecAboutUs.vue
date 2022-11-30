@@ -8,17 +8,19 @@
 
       <p class="about-us__info__decription">
         Chúng tôi tự hào nói rằng kể từ khi mở cửa vào năm 98, chúng tôi đã phục
-        vụ khách truy cập theo cách tốt nhất có thể. Trong khách sạn Monavi, nơi
+        vụ khách truy cập theo cách tốt nhất có thể. Trong khách sạn Mana Group, nơi
         mỗi một trong số 17 phòng của chúng tôi - với cá tính và phong cách
-        riêng - sẽ giúp bạn cảm thấy như ở nhà và sống trải nghiệm Monavi trải
+        riêng - sẽ giúp bạn cảm thấy như ở nhà và sống trải nghiệm Mana Group trải
         nghiệm như bạn sẽ không bao giờ tưởng tượng được.
       </p>
-      <img
-        class="about-us__info__img mb-2"
-        :src="img2"
-        alt=""
-      />
-      <h4 class="about-us__info__author">RICARD MORGAN - GENERAL MANAGER</h4>
+      <div class="about-us__info__authorBox">
+        <img
+          class="about-us__info__img mb-2"
+          :src="img2"
+          alt=""
+        />
+        <h4 class="about-us__info__author">BÙI TRUNG VĨ - GENERAL MANAGER</h4>
+      </div>
     </div>
     <div class="about-us__img p-2">
       <img class="w-100 h-100" :src="img1" alt="" />
@@ -53,6 +55,15 @@ export default {
 }
 .about-us__info {
   width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-us__info__authorBox {
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .about-us__info__about,
@@ -66,7 +77,7 @@ export default {
 }
 
 .about-us__info__img {
-  height: 65px;
+  height: 90px;
 }
 
 .about-us__img {

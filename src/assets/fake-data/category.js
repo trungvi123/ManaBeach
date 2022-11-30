@@ -19,6 +19,10 @@ const category = [
     display: "Liên hệ",
     path: "/contact",
   },
+  {
+    display: "Tìm kiếm",
+    path: "/search",
+  },
 ];
 
 export default category;

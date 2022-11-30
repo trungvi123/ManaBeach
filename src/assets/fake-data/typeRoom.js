@@ -8,7 +8,6 @@ const typeRoom = [
         option:'sang-trong',
         display:'SANG TRỌNG',
         path:'/catalog/sang-trong'
-
     },
     {
         option:'cap-doi',

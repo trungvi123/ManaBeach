@@ -32,7 +32,7 @@
           <div class="invalid-feedback">Vui lòng nhập giá dịch vụ!</div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <input
             type="text"
             class="form-control d-none"
@@ -42,7 +42,7 @@
             v-model="type"
           />
           <div class="invalid-feedback">Vui lòng nhập giá dịch vụ!</div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <textarea
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vueX";
 import productApi from "../api/productApi";
 export default {
   data() {
@@ -97,6 +98,9 @@ export default {
       price: "",
       description: "",
     };
+  },
+  computed:{
+    ...mapGetters(['getIsAdmin'])
   },
   methods: {
     handleSubmit(e) {
@@ -119,5 +123,10 @@ export default {
       productApi.createProduct(data);
     },
   },
+  mounted(){
+    if(!this.getIsAdmin){
+      this.$router.push('/not-found')
+    }
+  }
 };
 </script>
