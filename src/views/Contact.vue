@@ -41,16 +41,28 @@
         <div>
           <h3 class="text-center">LIÊN HỆ VỚI CHÚNG TÔI</h3>
           <div class="row m-0">
-            <input v-model="inputName" class="col-lg-12 mt-3 p-2" type="text"
-            placeholder="Họ và tên">
-            <input v-model="inputEmail" class="col-lg-12 mt-3 p-2" type="text" placeholder="Email" />
-            <input v-model="inputMessage"
+            <input
+              v-model="inputName"
+              class="col-lg-12 mt-3 p-2"
+              type="text"
+              placeholder="Họ và tên"
+            />
+            <input
+              v-model="inputEmail"
+              class="col-lg-12 mt-3 p-2"
+              type="text"
+              placeholder="Email"
+            />
+            <input
+              v-model="inputMessage"
               class="col-lg-12 mt-3 p-2"
               type="text"
               placeholder="Ghi chú"
             />
           </div>
-          <button @click="handleSubmit" class="primaryBtn mt-3"><span>ĐẶT NGAY</span></button>
+          <button @click="handleSubmit" class="primaryBtn mt-3">
+            <span>GỬI</span>
+          </button>
         </div>
       </div>
     </div>
@@ -60,17 +72,20 @@
 <script>
 import HelmetVue from "@/components/Helmet.vue";
 import PageTitleVue from "@/components/PageTitle.vue";
+import { mapMutations, mapGetters } from "vueX";
+
 import {
   BIconMapFill,
   BIconTelephoneFill,
   BIconMessenger,
   BIconWalletFill,
 } from "bootstrap-icons-vue";
+import contactApi from "../api/contactApi";
 export default {
   data() {
     return {
       inputName: "",
-      inputEmail: "",
+      inputEmail: this.getUserInfo ? this.getUserInfo : "",
       inputMessage: "",
     };
   },
@@ -82,15 +97,29 @@ export default {
     BIconMessenger,
     BIconWalletFill,
   },
-  methods:{
-    handleSubmit(){
+  computed: {
+    ...mapGetters(["getUserInfo"]),
+  },
+  methods: {
+    ...mapMutations(["setMessageModal"]),
+    async handleSubmit() {
       let data = {
-        inputName : this.inputName,
-        inputEmail: this.inputEmail,
-        inputMessage: this.inputMessage
+        name: this.inputName,
+        email: this.inputEmail,
+        note: this.inputMessage,
+      };
+
+      let result = contactApi.createContact(data);
+      if (result.state = 'sucess') {
+        this.setMessageModal({
+          show: true,
+          heading: "Thông báo",
+          content:
+            "Gửi thành công, chúng tôi sẽ liên hệ với bạn sớm nhất qua email hoặc số điện thoại!",
+          type: "success",
+        });
       }
-      console.log(data);
-    }
+    },
   },
   emits: ["headerBackgr"],
   mounted() {

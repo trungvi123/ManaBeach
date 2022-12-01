@@ -5,7 +5,7 @@
     <div class="row m-0 justify-content-center">
       <div class="col col-lg-2 col-md-5 col-sm-5 footer-items">
         <h6>ĐỊA CHỈ</h6>
-        <p><strong>Zixnie Beach</strong></p>
+        <p><strong>Mana Beach</strong></p>
         <p>Đại Học Cần Thơ</p>
       </div>
       <div class="col col-lg-2 col-md-5 col-sm-5 footer-items">
