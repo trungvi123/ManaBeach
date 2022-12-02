@@ -224,6 +224,11 @@ export default {
       this.setCartList([]);
     },
   },
+  emits: ["headerBackgr"],
+  mounted() {
+    window.scrollTo(0,0)
+    this.$emit("headerBackgr", "normal");
+  },
 };
 </script>
 

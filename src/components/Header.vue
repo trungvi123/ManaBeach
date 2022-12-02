@@ -18,13 +18,13 @@
         <img
           v-if="!isSkrinkHeader && backgrProps == 'transparent'"
           class="logo"
-          src="http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2019/03/logo_white_mona.png"
+          :src="logoWhite"
           alt="logo"
         />
         <img
           v-if="isSkrinkHeader || backgrProps != 'transparent'"
           class="logo"
-          src="http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2019/03/logo_black_mona.png"
+          :src="logoBlack"
           alt="logo"
         />
       </div>
@@ -84,17 +84,27 @@
           @click="handleOpenLoginModal()"
         ></BIconPerson>
 
-        <LoginVue @closeLoginModal="closeLoginModal" :showProps="showLoginModal"></LoginVue>
+        <LoginVue
+          @closeLoginModal="closeLoginModal"
+          :showProps="showLoginModal"
+        ></LoginVue>
 
         <router-link :to="{ path: '/cart' }" class="cart__count__box">
-          <div 
+          <div
             class="cart__count"
             :class="{
               cart__count__box__bg: backgrProps == 'transparent' ? false : true,
             }"
           >
-            {{   getCartList ?  getCartList.length > 9 ? '9+': getCartList.length > 0 ? getCartList.length : '' :''}}
-           
+            {{
+              getCartList
+                ? getCartList.length > 9
+                  ? "9+"
+                  : getCartList.length > 0
+                  ? getCartList.length
+                  : ""
+                : ""
+            }}
           </div>
           <BIconBag
             class="nav_icon nav-service__iconCart nav-service__iconCart__right"
@@ -137,8 +147,10 @@ import {
 import { mapGetters, mapMutations } from "vueX";
 import typeRoom from "../assets/fake-data/typeRoom";
 import { zaloLogo, Fb } from "../assets/images/iconPng";
+import { logoBlack, logoWhite } from "../assets/images/logo";
 import SearchModelVue from "./SearchModel.vue";
 import LoginVue from "./Login.vue";
+
 export default {
   data() {
     return {
@@ -147,6 +159,8 @@ export default {
       showLoginModal: false,
       typeRoom,
       zaloLogo,
+      logoBlack,
+      logoWhite,
       Fb,
     };
   },
@@ -165,7 +179,7 @@ export default {
     BIconChevronDown,
   },
   computed: {
-    ...mapGetters(["getShowSearchModel","getCartList"]),
+    ...mapGetters(["getShowSearchModel", "getCartList"]),
   },
   methods: {
     ...mapMutations(["setShowSearchModel"]),
@@ -175,8 +189,8 @@ export default {
     handleCloseLoginModal() {
       this.showLoginModal = false;
     },
-    closeLoginModal(){
-      this.handleCloseLoginModal()
+    closeLoginModal() {
+      this.handleCloseLoginModal();
     },
     shrinkHeader() {
       const headerRef = document.querySelector("#header");
@@ -313,7 +327,7 @@ export default {
   top: -7px;
   left: 22px;
   box-shadow: var(--box-shadow);
-  padding:0 4px;
+  padding: 0 4px;
   color: white;
   font-size: 0.8rem;
 }

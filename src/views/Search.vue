@@ -21,24 +21,24 @@
 <script>
 import { mapGetters } from "vueX";
 import HelmetVue from "../components/Helmet.vue";
-import CardProductVue from '../components/CardProduct.vue'
-import PageTitleVue from '../components/PageTitle.vue'
+import CardProductVue from "../components/CardProduct.vue";
+import PageTitleVue from "../components/PageTitle.vue";
 export default {
-  data(){
-    return {
-      
-    }
+  data() {
+    return {};
   },
   components: {
-    HelmetVue,CardProductVue,PageTitleVue
+    HelmetVue,
+    CardProductVue,
+    PageTitleVue,
   },
-  computed:{
-    ...mapGetters(['getSearchList'])
-  },  
-  mounted(){
+  computed: {
+    ...mapGetters(["getSearchList"]),
+  },
+  mounted() {
     window.scrollTo(0, 0);
     this.$emit("headerBackgr", "normal");
-  }
+  },
 };
 </script>
 

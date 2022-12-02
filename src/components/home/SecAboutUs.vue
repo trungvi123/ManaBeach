@@ -3,7 +3,7 @@
     <div class="about-us__info p-2 mr-2">
       <p class="about-us__info__about">VỀ CHÚNG TÔI</p>
       <h2 class="about-us__info__title mb-3">
-        Mona Beach - Hơn cả 1 kì nghỉ dưỡng trên biển
+        Mana Beach - Hơn cả 1 kì nghỉ dưỡng trên biển
       </h2>
 
       <p class="about-us__info__decription">

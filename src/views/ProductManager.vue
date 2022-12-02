@@ -210,6 +210,7 @@ export default {
         content: "Chỉnh sửa sản phẩm thành công",
         type: "success",
       });
+      this.getAllProduct()
       }
       
     },
@@ -226,7 +227,10 @@ export default {
       }
     },
   },
+  emits: ["headerBackgr"],
   mounted() {
+    window.scrollTo(0,0)
+    this.$emit("headerBackgr", "normal");
     this.getAllProduct();
     if(!this.getIsAdmin){
       this.$router.push('/not-found')
