@@ -1,6 +1,6 @@
 const apiConfig = {
-  // baseUrl: "https://manabeach-server.herokuapp.com/", server cá nhân đã hết hạn
-  baseUrl: "http://localhost:5000/",
+  // baseUrl: "https://manabeachserver.up.railway.app/", server cá nhân
+  baseUrl: "https://manabeachserver.up.railway.app/",
 };
 
 export default apiConfig;
