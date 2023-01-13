@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <HelmetVue :title="'contact'"></HelmetVue>
+    <HelmetVue :title="'Contact'"></HelmetVue>
     <PageTitleVue></PageTitleVue>
     <div class="contact-content row m-0 justify-content-center mt-5">
       <div class="contact-content__left col-lg-5">
