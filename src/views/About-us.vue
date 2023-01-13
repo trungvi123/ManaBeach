@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <HelmetVue :title="'news'"></HelmetVue>
+    <HelmetVue :title="'About'"></HelmetVue>
     <PageTitleVue></PageTitleVue>
     <div class="row m-0 justify-content-center mt-3">
       <div class="col-lg-7 col-md-7 col-sm-7 row mt-4">

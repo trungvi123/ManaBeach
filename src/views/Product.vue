@@ -6,7 +6,7 @@
           <CarouselVue :data="data"></CarouselVue>
         </div>
         <div class="right-content col-lg-4 col-md-5 p-3">
-          <h3 class="right-content__name">{{ data.name ? data.name : '' }}</h3>
+          <h3 class="right-content__name">{{ data.name ? data.name : "" }}</h3>
           <div class="small__line mt-3"></div>
           <p class="right-content__price mt-1" v-if="data.price">
             {{ numberWithCommas(data.price) }}
@@ -65,15 +65,15 @@ export default {
     SameProductVue,
   },
   methods: {
-    ...mapMutations(["setCartList", "setTotalCart",'setMessageModal']),
+    ...mapMutations(["setCartList", "setTotalCart", "setMessageModal"]),
     async addToCart() {
       let product = {
         ...this.data,
         quantity: 1,
       };
-      let checkAlready ;
+      let checkAlready;
       // this.setCartList(...this.getCartList,product)
-      if(this.getCartList != []){
+      if (this.getCartList != []) {
         checkAlready = this.getCartList?.find((e) => e._id == product._id);
       }
 
@@ -155,6 +155,8 @@ export default {
     },
   },
   mounted() {
+    window.scrollTo(0, 0);
+    this.$emit("headerBackgr", "normal");
     this.getData();
   },
 };
