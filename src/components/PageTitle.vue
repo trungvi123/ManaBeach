@@ -103,7 +103,7 @@ export default {
 <style>
 .page-title {
   height: 20vh;
-  background-image: url("http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2019/02/page-title-background.jpg");
+  background-image: url("../assets/images/all/page-title-background.jpg");
   color: var(--third-text-color);
   background-repeat: no-repeat;
   background-size: cover;

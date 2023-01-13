@@ -3,19 +3,19 @@ const newsData = [
     id:1,
     title: "Du lịch Đà Nẵng : 10 điểm du lịch tham quan hấp dẫn nhất",
     slug: "du-lich-nha-trang-10-diem-du-lich-tham-quan-hap-dan-nhat",
-    img: "http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2019/02/food-1024x711.jpg",
+    img: "https://manabeachserver.up.railway.app/images/news/mainImg/1.jpg",
     dropDesciption:'Toạ lạc trên đảo Hòn Tre với những bãi biển trong xanh quanh năm, Vinpearl Land được biết đến như “thiên đường của miền nhiệt đới”',
     description: [
       {
         title: "1. Vinpearl Land",
         detail:
           "<p>Toạ lạc trên đảo Hòn Tre với những bãi biển trong xanh quanh năm, Vinpearl Land được biết đến như “thiên đường của miền nhiệt đới”. Ngoài những khách sạn sang trọng, những khu vườn tuyệt đẹp, hồ bơi nước ngọt lý tưởng, nơi này còn thu hút du khách với khu trò chơi cảm giác mạnh và những rạp chiếu phim 4D hoành tráng. Vé tham quan đảo bao gồm vé cáp treo và chơi trò chơi: 600.000VND/người lớn; 350.000VND/trẻ em (1,0m – 1,4m). </p> <p>Di chuyển: Bằng cáp treo hoặc ca nô từ trung tâm thành phố Du lịch Nha Trang.</p> <p>Thời gian tham quan, tắm biển và nghỉ ngơi: Tối thiểu 1 ngày.</p>",
-        img: "https://cdn3.ivivu.com/2012/06/Nhatrang-IVIVU.jpg",
+        img: "https://manabeachserver.up.railway.app/images/news/img/1.1.jpg",
       },
       {
         title: "2. Đảo Hòn Mun",
         detail: "",
-        img: "https://cdn3.ivivu.com/2012/06/tour-du-lich-nha-trang-IVIVU.jpeg",
+        img: "https://manabeachserver.up.railway.app/images/news/img/1.2.jpg",
       },
     ],
   },
@@ -23,14 +23,14 @@ const newsData = [
     id:2,
     title: "Du lịch Vũng Tàu: Cẩm nang từ A đến Z",
     slug: "du-lich-vung-tau-cam-nang-tu-a-den-z",
-    img: "http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2018/12/cu-lao-cham-1024x684.jpg",
+    img: "https://manabeachserver.up.railway.app/images/news/mainImg/2.jpg",
     dropDesciption:'Cách trung tâm thành phố Hồ Chí Minh chỉ khoảng 3 tiếng lái xe, với đường bờ biển trải dài 20km.',
     description: [
       {
         title: "Tổng quan du lịch Vũng Tàu",
         detail:
           "<p>Cách trung tâm thành phố Hồ Chí Minh chỉ khoảng 3 tiếng lái xe, với đường bờ biển trải dài 20km, Vũng Tàu là một trong những điểm đến yêu thích của du khách phía Nam. Nằm nhô hẳn ra khỏi đất liền như một dải đất, từ nơi đây, người ta có thể nhìn biển Đông cả khi trời mọc lẫn lúc hoàng hôn. Bên cạnh những giá trị cảnh quan thiên nhiên, Vũng Tàu còn là miền đất có truyền thống văn hóa lịch sử lâu đời.</p>",
-        img: "https://cdn3.ivivu.com/2014/10/Du-lich-vung-tau-cam-nang-tu-a-den-z-iVIVU.com-1-1024x427.jpg",
+        img: "https://manabeachserver.up.railway.app/images/news/img/2.1.jpg",
       },
       {
         title: "Khí hậu",
@@ -56,14 +56,14 @@ const newsData = [
     id:3,
     title: "Du lịch Phú Quốc: Cẩm nang từ A đến Z",
     slug: "du-lich-phu-quoc-cam-nang-tu-a-den-z",
-    img: "http://mauweb.monamedia.net/hotellerbeach/wp-content/uploads/2018/12/lang-hoa.jpg",
+    img: "https://manabeachserver.up.railway.app/images/news/mainImg/3.jpg",
     dropDesciption:'Phú Quốc là quần đảo xinh đẹp nằm sâu trong vùng vịnh Thái Lan, thuộc tỉnh Kiên Giang. Ở vùng biển phía Nam của tổ quốc',
     description: [
       {
         title: "Tổng quan du lịch Phú Quốc",
         detail:
           "<p>Phú Quốc là quần đảo xinh đẹp nằm sâu trong vùng vịnh Thái Lan, thuộc tỉnh Kiên Giang. Ở vùng biển phía Nam của tổ quốc, đảo Ngọc Phú Quốc – hòn đảo lớn nhất của Việt Nam, cũng là đảo lớn nhất trong quần thể 22 đảo tại đây. Nước biển trong vắt, những dòng suối yên bình cùng nhiều hải sản độc đáo chính là lợi thế tuyệt vời của du lịch Phú Quốc.</p>",
-        img: "https://cdn3.ivivu.com/2014/08/phu-quoc-island-vietnam-ivivu.jpg",
+        img: "https://manabeachserver.up.railway.app/images/news/img/3.1.jpg",
       },
       {
         title: "Lên lịch du lịch Phú Quốc",
