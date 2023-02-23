@@ -1,6 +1,6 @@
 const apiConfig = {
-  // baseUrl: "https://manabeachserver.up.railway.app/", server cá nhân
-  baseUrl: "https://manabeachserver.up.railway.app/",
+  // baseUrl: "https://manaserver.onrender.com", server cá nhân
+  baseUrl: "https://manaserver.onrender.com/",
 };
 
 export default apiConfig;

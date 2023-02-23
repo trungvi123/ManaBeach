@@ -1,3 +1,6 @@
+import apiConfig from "../../api/apiConfig";
+
+
 const aboutText = [
   {
     id: 0,
@@ -21,9 +24,9 @@ const aboutText = [
 
 const aboutImg = {
   imgs: [
-    "https://manabeachserver.up.railway.app/images/news/mainImg/2.jpg",
-    "https://manabeachserver.up.railway.app/images/news/mainImg/3.jpg",
-    "https://1.bp.blogspot.com/-3aF-SCCzu0c/XPYfrj8vuHI/AAAAAAAADrM/FgynUfwBGNcR205wdo3nZoGStNSJBMkEQCLcBGAs/s1600/Nhung-dieu-khong-nen-bo-qua-khi-du-lich-tai-Indonesia.jpg",
+    `${apiConfig.baseUrl}/images/news/mainImg/2.jpg`,
+    `${apiConfig.baseUrl}/images/news/mainImg/3.jpg`,
+    `https://1.bp.blogspot.com/-3aF-SCCzu0c/XPYfrj8vuHI/AAAAAAAADrM/FgynUfwBGNcR205wdo3nZoGStNSJBMkEQCLcBGAs/s1600/Nhung-dieu-khong-nen-bo-qua-khi-du-lich-tai-Indonesia.jpg`,
   ],
 };
 
