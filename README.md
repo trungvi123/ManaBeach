@@ -1,5 +1,5 @@
--- phần client
-Login với quyền admin bằng đường dẫn: .../adminLogin
+
+Login với quyền admin bằng đường dẫn: .../admin/login
 
 tk: ad@gmail.com
 mk:123
