@@ -5,6 +5,10 @@ const productApi = {
     const url = "product/";
     return axiosClient.get(url);
   },
+  checkQuantity: (payload) => {
+    const url = `product/checkQuantity/${payload.id}`;
+    return axiosClient.post(url,payload);
+  },
   createProduct: (payload) => {
     const url = "product/";
     return axiosClient.post(url, payload);

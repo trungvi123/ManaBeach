@@ -31,7 +31,18 @@
           />
           <div class="invalid-feedback">Vui lòng nhập giá dịch vụ!</div>
         </div>
-
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="quantity"
+            placeholder="Giá dịch vụ"
+            name="quantity"
+            v-model="quantity"
+            required
+          />
+          <div class="invalid-feedback">Vui lòng nhập số lượng dịch vụ!</div>
+        </div>
         <!-- <div class="form-group">
           <input
             type="text"
@@ -97,6 +108,7 @@ export default {
       name: "",
       price: "",
       description: "",
+      quantity: ''
     };
   },
   computed:{
@@ -120,6 +132,7 @@ export default {
         price: this.price,
         type: this.type,
         description: this.description,
+        quantity: this.quantity,
       };
       let result = await productApi.createProduct(data);
       this.setMessageModal({

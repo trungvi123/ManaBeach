@@ -7,6 +7,7 @@
         </div>
         <div class="right-content col-lg-4 col-md-5 p-3">
           <h3 class="right-content__name">{{ data.name ? data.name : "" }}</h3>
+          <h5>{{data.quantity > 0 ? '' : "Hết phòng"}}</h5>
           <div class="small__line mt-3"></div>
           <p class="right-content__price mt-1" v-if="data.price">
             {{ numberWithCommas(data.price) }}
@@ -67,7 +68,8 @@ export default {
   methods: {
     ...mapMutations(["setCartList", "setTotalCart", "setMessageModal"]),
     async addToCart() {
-      let product = {
+      if(this.data.quantity){
+         let product = {
         ...this.data,
         quantity: 1,
       };
@@ -77,12 +79,7 @@ export default {
         checkAlready = this.getCartList?.find((e) => e._id == product._id);
       }
 
-      this.setMessageModal({
-        show: true,
-        heading: "Thông báo",
-        content: "Thêm sản phẩm vào giỏ hàng thành công",
-        type: "success",
-      });
+     
 
       if (checkAlready) {
         //   // spham co trong gio hang roi thi tang so luong
@@ -101,11 +98,18 @@ export default {
         this.setTotalCart(totalCart);
 
         this.setCartList(updateCart);
+        this.setMessageModal({
+          show: true,
+          heading: "Thông báo",
+          content: "Thêm sản phẩm vào giỏ hàng thành công",
+          type: "success",
+        });
       } else {
-        this.getCartList.push(product);
+        // this.getCartList?.push(product);
+        let oldCart = this.getCartList || []
+        this.setCartList([...oldCart,product]);
         let infoUser = JSON.parse(localStorage.getItem("userInfo"));
         let ListUser = await userApi.getAllUser();
-
         ListUser.forEach(async (element) => {
           if (element.email == infoUser) {
             element.cart = this.getCartList;
@@ -121,8 +125,24 @@ export default {
           totalCart += Number(e.price) * Number(e.quantity);
         });
         this.setTotalCart(totalCart);
+
+        this.setMessageModal({
+          show: true,
+          heading: "Thông báo",
+          content: "Thêm sản phẩm vào giỏ hàng thành công",
+          type: "success",
+        });
       }
       // console.log(this.getCartList.push(product));
+    }else {
+      this.setMessageModal({
+          show: true,
+          heading: "Thông báo",
+          content: "Hiện tại phòng này đã hết!",
+          type: "error",
+        });
+    }
+
     },
     async getData() {
       try {

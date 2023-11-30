@@ -1,8 +1,8 @@
 <template>
   <div class="main-content">
     <HelmetVue :title="'Order manager'"></HelmetVue>
-    <div class="d-flex m-0 justify-content-around">
-      <div v-for="item in data" :key="item.id" class="orderItem">
+    <div class="row m-0 justify-content-around">
+      <div v-for="item in data" :key="item.id" class="orderItem col-md-4">
         <p><strong>Order:</strong> {{ item._id }}</p>
         <p><strong>Email:</strong> {{ item.email }}</p>
         <p><strong>Detail:</strong></p>
@@ -37,7 +37,7 @@ export default {
   methods: {
     async getAllOrder() {
       let result = await orderApi.getAllOrder();
-      console.log(result);
+
       if (result) {
         this.data = result;
       }

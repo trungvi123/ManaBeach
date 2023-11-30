@@ -63,15 +63,14 @@ export default {
         cart: this.getCartList,
       };
       let result = await orderApi.createOrder(payload);
-
-      if (result.state == "success") {
+      if (result.state === "success") {
         // xoa du lieu cua cart cua user đó
         let ListUser = await userApi.getAllUser();
-        ListUser.forEach(async (element) => {
-          if (element.email == this.getUserInfo) {
+        
+        for (const element of ListUser) {
+          if (element.email === this.getUserInfo) {
             element.cart = [];
-            let user = await userApi.updateUser(element);
-
+            await userApi.updateUser(element);
             this.setTotalCart(0);
             this.setCartList([]);
             this.setMessageModal({
@@ -84,7 +83,8 @@ export default {
 
             sendMailApi.sendMail({email: this.getUserInfo})
           }
-        });
+        }
+
       }
     },
   },

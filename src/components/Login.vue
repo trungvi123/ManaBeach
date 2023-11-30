@@ -19,10 +19,16 @@
           </router-link>
         </button>
         <button v-if="getIsAdmin" class="outlineBtn mt-4">
+          <router-link :to="{ path: '/orderManager' }">
+            <span>Quản lí đặt phòng</span>
+          </router-link>
+        </button>
+        <button v-if="getIsAdmin" class="outlineBtn mt-4">
           <router-link :to="{ path: '/add-product' }">
             <span>Thêm sản phẩm</span>
           </router-link>
         </button>
+        
         <button v-if="getIsAdmin" class="outlineBtn mt-4">
           <router-link :to="{ path: '/add-img-product' }"
             ><span>Thêm ảnh cho sản phẩm</span></router-link

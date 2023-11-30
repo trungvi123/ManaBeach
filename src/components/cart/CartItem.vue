@@ -18,7 +18,7 @@
         <div class="product__info__item__quantity">
           <div
             class="product__info__item__quantity__btn mr-2"
-            @click="updateQuantity('minus')"
+            @click="updateQuantity('minus', data._id)"
           >
             <BIconDashCircle></BIconDashCircle>
           </div>
@@ -27,7 +27,7 @@
           </div>
           <div
             class="product__info__item__quantity__btn ml-2"
-            @click="updateQuantity('plus')"
+            @click="updateQuantity('plus', data._id)"
           >
             <BIconPlusCircle></BIconPlusCircle>
           </div>
@@ -49,6 +49,8 @@ import {
 } from "bootstrap-icons-vue";
 import numberWithCommas from "../../utils/numberWithCommas";
 import userApi from "../../api/userApi";
+import productApi from '../../api/productApi';
+
 export default {
   data() {
     return {
@@ -68,17 +70,43 @@ export default {
     ...mapGetters(["getCartList"]),
   },
   methods: {
-    ...mapMutations(["setCartList", "setTotalCart"]),
-    updateQuantity(type) {
+    ...mapMutations(["setCartList", "setTotalCart","setMessageModal"]),
+    async updateQuantity (type,id) {
+
+      console.log('gi');
       if (type === "minus") {
-        if (this.itemQuantity - 1 >= 1) {
+   
+          if (this.itemQuantity - 1 >= 1) {
           this.itemQuantity = this.itemQuantity - 1;
           this.changeQuantity(this.itemQuantity);
         }
+      
       } else {
-        this.itemQuantity = this.itemQuantity + 1;
+        const check = await productApi.checkQuantity({
+          id,
+          quantity: this.itemQuantity + 1
+        })
+
+        if(check.state === 'success'){
+           this.itemQuantity = this.itemQuantity + 1;
         this.changeQuantity(this.itemQuantity);
+        }else {
+          this.setMessageModal({
+              show: true,
+              heading: "Thông báo",
+              content:
+                "Số lượng phòng còn lại không đủ!",
+              type: "error",
+            });
+        }
+
+
       }
+      let totalCart = 0;
+      this.getCartList?.forEach((e) => {
+        totalCart += Number(e.price) * Number(e.quantity);
+      });
+      this.setTotalCart(totalCart);
     },
     async deletaItemCart(id) {
       // lay cac item khong bi xoa
@@ -86,7 +114,6 @@ export default {
       // cap nhat lai list
       this.setCartList(itemsNotDelete);
       this.updateUserCart();
-
     },
     async updateUserCart() {
       // cap nhat lai cart tren database
