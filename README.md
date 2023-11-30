@@ -1,5 +1,5 @@
 
-Login với quyền admin bằng đường dẫn: .../admin/login
+Login với quyền admin bằng đường dẫn: .../adminLogin
 
 tk: ad@gmail.com
 mk:123
